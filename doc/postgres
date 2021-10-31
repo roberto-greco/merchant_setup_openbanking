@@ -1,0 +1,10 @@
+installation password : root!1234
+url : localhost
+port : 5432
+
+pgpAdmin
+masterpassword : root!1234
+
+server PostGresSQL 14
+user : postgres
+password: root!1234
