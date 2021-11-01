@@ -1,11 +1,12 @@
 package com.robertogreco.openbanking.controller;
 
 import com.robertogreco.openbanking.dataModel.Merchant;
+import com.robertogreco.openbanking.exception.MerchantAlreadyExistsException;
 import com.robertogreco.openbanking.services.MerchantServices;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,12 +25,23 @@ public class MerchantController {
     }
 
     @GetMapping(path = "/merchant")
-    public Merchant getMerchant() {
-        return merchantServices.findMerchantById(1L);
+    public Merchant getMerchant( @RequestParam(name = "id",required = true, defaultValue = "1L") String id) {
+        return merchantServices.findMerchantById(Long.valueOf(id));
     }
 
-    @GetMapping(path = "/merchants")
+    @PostMapping(path = "/merchant")
+    public Merchant postMerchant(@RequestBody Merchant inMerchant) throws MerchantAlreadyExistsException
+    {
+        return merchantServices.createMerchant(inMerchant);
+    }
+
+    @GetMapping(path = "/merchant/list")
     public List<Merchant> getMerchants() {
         return merchantServices.getMerchantList();
+    }
+
+    @ExceptionHandler(value = MerchantAlreadyExistsException.class)
+    public ResponseEntity<String> handleMerchantAlreadyExistsException(MerchantAlreadyExistsException blogAlreadyExistsException) {
+        return new ResponseEntity<String>("merchant already exists", HttpStatus.CONFLICT);
     }
 }
