@@ -1,3 +1,4 @@
+Windows
 installation password : root!1234
 url : localhost
 port : 5432
@@ -8,3 +9,20 @@ masterpassword : root!1234
 server PostGresSQL 14
 user : postgres
 password: root!1234
+
+Ubuntu
+
+sudo apt update
+sudo apt full-upgrade
+sudo apt install postgresql
+sudo su postgres
+sudo su postgres
+    vi /etc/postgresql/12/main/postgresql.conf
+    vi /etc/postgresql/12/main/pg_hba.conf
+
+    psql
+        postgres=# ALTER USER postgres PASSWORD 'root!1234';
+        exit;
+    exit
+sudo ufw allow 5432/tcp
+sudo systemctl restart postgresql
