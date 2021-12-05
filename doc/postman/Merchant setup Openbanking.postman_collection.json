@@ -1,0 +1,39 @@
+{
+	"info": {
+		"_postman_id": "c35ff565-3aaa-469a-993f-9d53cf5fd268",
+		"name": "Merchant setup Openbanking",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "merchant",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"flower shop\",\r\n    \"vat\" : 12345,\r\n    \"mobile\" : \"+393315082770\",\r\n    \"bankcode\" : \"88105\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/openBanking/merchant",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"openBanking",
+						"merchant"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

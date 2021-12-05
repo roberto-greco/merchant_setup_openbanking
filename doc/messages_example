@@ -1,0 +1,22 @@
+POST merchant
+Request :
+
+{
+    "name": "flower shop",
+    "vat" : 12345,
+    "mobile" : "+393315082770",
+    "bankcode" : "88105"
+
+}
+
+Response :
+
+http 200 OK
+
+{
+    "id": 2,
+    "name": "flower shop",
+    "vat": "12345",
+    "mobile": "+393315082770",
+    "bankcode": "88105"
+}
