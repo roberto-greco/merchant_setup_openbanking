@@ -11,18 +11,37 @@ user : postgres
 password: root!1234
 
 Ubuntu
+1- update dist
+    sudo apt update
+    sudo apt full-upgrade
+2- install postgres
+    sudo apt install postgresql
+3- impersonate postgres user: allow remote access to postgres
 
-sudo apt update
-sudo apt full-upgrade
-sudo apt install postgresql
-sudo su postgres
-sudo su postgres
+    sudo su postgres
     vi /etc/postgresql/12/main/postgresql.conf
-    vi /etc/postgresql/12/main/pg_hba.conf
 
+        Look for this line in the file:
+        #listen_addresses = 'localhost'
+        Uncomment, and change the value to '*', this will allow Postgres connections from anyone.
+        listen_addresses = '*'
+
+    vi /etc/postgresql/12/main/pg_hba.conf
+        Modify this section:
+        # IPv4 local connections:
+        host    all             all             127.0.0.1/32            md5
+        To this:
+        # IPv4 local connections:
+        host    all             all             0.0.0.0/0            md5
+4- impersonate postgres user: change password via "psql" CLI client. Change password is needed to acces remotely via pgAdmin
     psql
         postgres=# ALTER USER postgres PASSWORD 'root!1234';
         exit;
+5- exit postgres bash
+
     exit
+
+6- allow tcp traffic on port 5432 ( postgres  default )
 sudo ufw allow 5432/tcp
+7- restart postgres service
 sudo systemctl restart postgresql
