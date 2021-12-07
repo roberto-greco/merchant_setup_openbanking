@@ -31,7 +31,8 @@ public class MerchantServices {
      * @return
      */
     public Merchant findMerchantById(Long id) {
-        return new Merchant(1L, "tesco", "vat12345", "+35123456", "12098");
+
+        return merchantRepository.findById(id).get();
     }
 
     /**

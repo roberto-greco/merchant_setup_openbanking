@@ -8,10 +8,10 @@ import static javax.persistence.GenerationType.SEQUENCE;
 @Table(
         name = "merchant",
         uniqueConstraints = {
-                @UniqueConstraint(name = "unique", columnNames = {"vat","bankcode"})
+                @UniqueConstraint(name = "unique", columnNames = {"vat", "bankcode"})
         }
 )
-public class Merchant {
+public class Merchant extends AuditModel {
     @Id
     @SequenceGenerator(
             name = "merchant_sequence",
@@ -32,21 +32,7 @@ public class Merchant {
     private String mobile;
     private String bankcode;
 
-    public Merchant(){};
-    public Merchant(Long id, String name, String vat, String mobile, String bankCode) {
-        this.id = id;
-        this.name = name;
-        this.vat = vat;
-        this.mobile = mobile;
-        this.bankcode = bankCode;
-    }
 
-    public Merchant(String name, String vat, String mobile, String bankCode) {
-        this.name = name;
-        this.vat = vat;
-        this.mobile = mobile;
-        this.bankcode = bankCode;
-    }
 
     public String getName() {
         return name;
@@ -88,16 +74,6 @@ public class Merchant {
         this.id = id;
     }
 
-    @Override
-    public String toString() {
-        return "Merchant{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", vat='" + vat + '\'' +
-                ", mobile='" + mobile + '\'' +
-                ", bankCode='" + bankcode + '\'' +
-                '}';
-    }
 
 
 }
