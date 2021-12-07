@@ -1,6 +1,7 @@
 package com.robertogreco.openbanking.dataModel;
 
 import javax.persistence.*;
+import java.util.List;
 
 import static javax.persistence.GenerationType.SEQUENCE;
 
@@ -32,6 +33,16 @@ public class Merchant extends AuditModel {
     private String mobile;
     private String bankcode;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "merchant")
+    private List<Shop> shopList;
+
+    public List<Shop> getShopList() {
+        return shopList;
+    }
+
+    public void setShopList(List<Shop> shopList) {
+        this.shopList = shopList;
+    }
 
 
     public String getName() {
@@ -61,6 +72,7 @@ public class Merchant extends AuditModel {
     public String getBankcode() {
         return bankcode;
     }
+
 
     public void setBankcode(String bankcode) {
         this.bankcode = bankcode;

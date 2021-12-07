@@ -30,8 +30,8 @@ public abstract class AuditModel implements Serializable {
         return created;
     }
 
-    public void setCreated(Date createdAt) {
-        this.created = createdAt;
+    public void setCreated(Date created) {
+        this.created = created;
     }
 
     public Date getUpdated() {
