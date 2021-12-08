@@ -100,4 +100,7 @@ public class MerchantServices {
     }
 
 
+    public void delete(Long id) {
+        merchantRepository.deleteById(id);
+    }
 }
